@@ -10,9 +10,9 @@ async function binarySeach (props) {
       mid = Math.floor((r+l)/2)
       props.setDisplayArray(props.array.map((value, index) => {
         if (index === r || index === l || index === mid){
-          return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.height}px`, backgroundColor: 'red'}} key={index} id={index}><div className="bar-text"  style={{fontSize:`${props.font}rem`}}>{value}</div></div>
+          return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.height}px`, backgroundColor: 'red'}} key={index} id={index}><div className="bar-text"  style={{fontSize:`${props.font}px`}}>{value}</div></div>
         } else {
-          return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.height}px`, fontSize:`${props.font}rem`}} key={index} id={index}><div className="bar-text" style={{fontSize:`${props.font}rem`}}>{value}</div></div>
+          return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.height}px`}} key={index} id={index}><div className="bar-text" style={{fontSize:`${props.font}px`}}>{value}</div></div>
         }
       }))
       await sleep(1000)
@@ -23,9 +23,9 @@ async function binarySeach (props) {
       } else {
         props.setDisplayArray(props.array.map((value, index) => {
           if (index === mid){
-            return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.height}px`, backgroundColor: '#00B6D3'}} key={index} id={index}><div className="bar-text" style={{fontSize:`${props.font}rem`}}>{value}</div></div>
+            return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.height}px`, backgroundColor: '#00B6D3'}} key={index} id={index}><div className="bar-text" style={{fontSize:`${props.font}px`}}>{value}</div></div>
           } else {
-            return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.height}px`}} key={index} id={index}><div className="bar-text" style={{fontSize:`${props.font}rem`}}>{value}</div></div>
+            return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.height}px`}} key={index} id={index}><div className="bar-text" style={{fontSize:`${props.font}px`}}>{value}</div></div>
           }
         }))
           console.log(`found ${props.searchValue}`)

@@ -117,6 +117,7 @@ function App() {
   }
 
   function quickSortArray(){
+    console.log(font)
     setSearchState(false)
     setDisplayState(!displayStateRef.current)
     quickSortMain(sortProps, 0, array.length - 1)
@@ -128,7 +129,7 @@ function App() {
     setSearchState(true)
     // want to generate a random value to search (one that could or could not be in the array), but want it the random generation to favor an element in the array
     let value = Math.floor(Math.random()*(6))
-    console.log(value)
+    // console.log(value)
     setSearchValue(value < 4 ? array[Math.floor(Math.random()*(array.length-1))] : Math.floor(Math.random()*MAX_VALUE_GENERATED + MIN_VALUE_GENERATED))
     //console.log(searchValue, searchValueRef)
     searchProps.searchValue = searchValueRef.current

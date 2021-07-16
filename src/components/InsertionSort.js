@@ -8,9 +8,9 @@ async function insertionSort (props) {
         
         props.setDisplayArray(props.array.map((value, index) => {
           if (index === j || index === j-1){
-            return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.width}px`, backgroundColor: 'red'}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}rem`}}>{value}</div></div>
+            return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.width}px`, backgroundColor: 'red'}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}px`}}>{value}</div></div>
           } else {
-            return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.width}px`}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}rem`}}>{value}</div></div>
+            return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.width}px`}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}px`}}>{value}</div></div>
           }
         }))
         swap(props.array, j-1, j)
@@ -25,7 +25,7 @@ async function insertionSort (props) {
     }
     props.setArray(props.array)
         props.setDisplayArray(props.array.map((value, index) => {
-            return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.width}px`}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}rem`}}>{value}</div></div>
+            return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.width}px`}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}px`}}>{value}</div></div>
         }))
     props.setDisplayState(!props.displayStateRef.current)
   }

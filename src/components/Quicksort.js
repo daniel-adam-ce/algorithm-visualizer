@@ -14,9 +14,9 @@ async function partition (props, low, high) {
             props.setDisplayArray(props.array.map((value, index) => {
                 //console.log(value)
                 if (index === j || index === i){
-                  return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.width}px`, backgroundColor: 'red'}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}rem`}}>{value}</div></div>
+                  return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.width}px`, backgroundColor: 'red'}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}px`}}>{value}</div></div>
                 } else {
-                  return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.width}px`}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}rem`}}>{value}</div></div>
+                  return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.width}px`}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}px`}}>{value}</div></div>
                 }
             }))
             swap(props.array, i, j)
@@ -27,9 +27,9 @@ async function partition (props, low, high) {
     }
     props.setDisplayArray(props.array.map((value, index) => {
         if (index === i+1 || index === high){
-          return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.width}px`, backgroundColor: 'red'}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}rem`}}>{value}</div></div>
+          return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.width}px`, backgroundColor: 'red'}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}px`}}>{value}</div></div>
         } else {
-          return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.width}px`}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}rem`}}>{value}</div></div>
+          return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.width}px`}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}px`}}>{value}</div></div>
         }
     }))
     swap(props.array, i+1, high)
@@ -39,6 +39,7 @@ async function partition (props, low, high) {
     return i + 1
 }
 function quickSort(props, low, high) {
+  console.log(props.font)
   let index = 0
   quickSortMain(props, low, high)
   function quickSortMain(props, low, high) {
@@ -54,7 +55,7 @@ function quickSort(props, low, high) {
       if (index === props.array.length - 1) {
         props.setArray(props.array)
         props.setDisplayArray(props.array.map((value, index) => {
-            return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.width}px`}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}rem`}}>{value}</div></div>
+            return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.width}px`}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}px`}}>{value}</div></div>
         }))
         props.setDisplayState(false)
       }
