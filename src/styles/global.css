@@ -40,4 +40,5 @@
 
 .bar-text {
     transform: rotateX(-180deg);
+    font-weight: bold;
 }

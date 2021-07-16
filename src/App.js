@@ -8,10 +8,12 @@ import insertionSort from './components/InsertionSort'
 import quickSortMain from './components/Quicksort'
 let DELAY = 40;
 const MIN_VALUE_GENERATED = 10;
-const MAX_VALUE_GENERATED = 350;
+const MAX_VALUE_GENERATED = 250;
 let WIDTH_CONSTANT = window.innerWidth;
-const HEIGHT_MULTIPLIER = 1.5;
-let WIDTH = 0.5*WIDTH_CONSTANT/(50)
+const WIDTH_MULTIPLIER = 0.7
+const HEIGHT_MULTIPLIER = 1.0;
+let WIDTH = WIDTH_MULTIPLIER*WIDTH_CONSTANT/(50)
+
 const generate = (min, max, num) => { 
   let array = [];
 
@@ -32,11 +34,17 @@ function useWindowSize(props) {
         const handleResize = () => {
           setSize([window.innerHeight, window.innerWidth])
           WIDTH_CONSTANT = window.innerWidth
-          WIDTH = 0.5*WIDTH_CONSTANT/(props.arrayRef.current.length)
-          props.font = WIDTH >= 28 ? 1 : 0
-          console.log(WIDTH, props.font)
+          WIDTH = WIDTH_MULTIPLIER*WIDTH_CONSTANT/(props.arrayRef.current.length)
+          if (WIDTH / 3 >= 7 && WIDTH / 3 <= 10) {
+            props.font = WIDTH / 3
+          } else if (WIDTH / 3 < 7){
+            props.font = 0
+          } else { 
+            props.font = 10
+          }
+          // console.log(WIDTH, props.font)
           props.setDisplayArray(props.arrayRef.current.map((value, index) => {
-            return <div className='bar' style = {{height: `${value*HEIGHT_MULTIPLIER}px`, width: `${WIDTH}px`}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}rem`}}>{value}</div></div>
+            return <div className='bar' style = {{height: `${value*HEIGHT_MULTIPLIER}px`, width: `${WIDTH}px`}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}px`}}>{value}</div></div>
           }))
         }
         window.addEventListener("resize", handleResize)
@@ -49,7 +57,15 @@ function useWindowSize(props) {
 }
 
 function calcFontSize() {
-  let font = WIDTH >= 30 ? 1 : 0
+  let font = 0
+  // console.log(WIDTH / 3)
+  if (WIDTH / 3 >= 7 && WIDTH / 3 <= 10) {
+    font = WIDTH / 3
+  } else if (WIDTH / 3 < 7){
+    font = 0
+  } else { 
+    font = 10
+  }
   return font
 }
 
@@ -59,7 +75,7 @@ function App() {
   
   let font = calcFontSize()
   const [arrayDisplay, setDisplayArray, arrayDisplayRef] = useState(array.map((value, index) => {
-    return <div className='bar' style = {{height: `${value*HEIGHT_MULTIPLIER}px`, width: `${WIDTH}px`}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${font}rem`}}>{value}</div></div>
+    return <div className='bar' style = {{height: `${value*HEIGHT_MULTIPLIER}px`, width: `${WIDTH}px`}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${font}px`}}>{value}</div></div>
   }))
   
   const [displayState, setDisplayState, displayStateRef] = useState(false)
@@ -121,12 +137,12 @@ function App() {
   const clickGenerate = () =>{
     // console.log(window.outerWidth, window.innerWidth)
     DELAY = 10*(200/(arraySize))
-    WIDTH = 0.5*WIDTH_CONSTANT/(arraySize)
+    WIDTH = WIDTH_MULTIPLIER*WIDTH_CONSTANT/(arraySize)
     setArray(generate(MIN_VALUE_GENERATED,MAX_VALUE_GENERATED,arraySize))
     setSearchState(false)
     setIsSorted(false)
     setDisplayArray(arrayRef.current.map((value, index) => {
-      return <div className='bar' style = {{height: `${value*HEIGHT_MULTIPLIER}px`, width: `${WIDTH}px`}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${calcFontSize()}rem`}}>{value}</div></div>
+      return <div className='bar' style = {{height: `${value*HEIGHT_MULTIPLIER}px`, width: `${WIDTH}px`}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${calcFontSize()}px`}}>{value}</div></div>
     }))
     //clickGenerateDisplay()
   }
