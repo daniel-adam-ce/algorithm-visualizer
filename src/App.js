@@ -9,7 +9,7 @@ import quickSortMain from './components/Quicksort'
 let DELAY = 40;
 const MIN_VALUE_GENERATED = 10;
 const MAX_VALUE_GENERATED = 350;
-let WIDTH_CONSTANT = window.innerWidth-420;
+let WIDTH_CONSTANT = window.innerWidth;
 const HEIGHT_MULTIPLIER = 1.5;
 //const WIDTH_MULTIPLIER = 1.75;
 //let HEIGHT = HEIGHT_CONSTANT/(100*HEIGHT_MULTIPLIER);
