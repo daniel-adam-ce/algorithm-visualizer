@@ -11,19 +11,15 @@ const MIN_VALUE_GENERATED = 10;
 const MAX_VALUE_GENERATED = 350;
 let WIDTH_CONSTANT = window.innerWidth;
 const HEIGHT_MULTIPLIER = 1.5;
-//const WIDTH_MULTIPLIER = 1.75;
-//let HEIGHT = HEIGHT_CONSTANT/(100*HEIGHT_MULTIPLIER);
-let WIDTH = WIDTH_CONSTANT/(50)  >= 1 ? WIDTH_CONSTANT/(50) : 1;
+let WIDTH = 0.5*WIDTH_CONSTANT/(50)
 const generate = (min, max, num) => { 
   let array = [];
 
 
   for (let i = 0; i < num; i++){
     let value = Math.floor(Math.random() * max) + min
-    //array.push(<div className='bar' style = {{height: '5px', width: `${value}px`}} key={i} id={i}>{value}</div>);
     array.push(value)
   }
-  //array.map((value) => <div>{value}</div>)
   return array
 }
 
@@ -37,7 +33,7 @@ function useWindowSize(props) {
           setSize([window.innerHeight, window.innerWidth])
           WIDTH_CONSTANT = window.innerWidth
           WIDTH = 0.5*WIDTH_CONSTANT/(props.arrayRef.current.length)
-          props.font = WIDTH >= 30 ? 1 : 0
+          props.font = WIDTH >= 28 ? 1 : 0
           console.log(WIDTH, props.font)
           props.setDisplayArray(props.arrayRef.current.map((value, index) => {
             return <div className='bar' style = {{height: `${value*HEIGHT_MULTIPLIER}px`, width: `${WIDTH}px`}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}rem`}}>{value}</div></div>
@@ -62,11 +58,6 @@ function App() {
   const [array, setArray, arrayRef] = useState(generate(MIN_VALUE_GENERATED,MAX_VALUE_GENERATED,arraySize))
   
   let font = calcFontSize()
-  // if (arrayRef.current.length > 50) {
-  //   font = 0
-  // } else {
-  //   font = 1
-  // }
   const [arrayDisplay, setDisplayArray, arrayDisplayRef] = useState(array.map((value, index) => {
     return <div className='bar' style = {{height: `${value*HEIGHT_MULTIPLIER}px`, width: `${WIDTH}px`}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${font}rem`}}>{value}</div></div>
   }))
@@ -128,10 +119,9 @@ function App() {
     binarySearch(searchProps)
   }
   const clickGenerate = () =>{
-    console.log(window.innerHeight, window.innerWidth)
+    // console.log(window.outerWidth, window.innerWidth)
     DELAY = 10*(200/(arraySize))
-    //HEIGHT = HEIGHT_CONSTANT/(arraySize*HEIGHT_MULTIPLIER)
-    WIDTH = WIDTH_CONSTANT/(arraySize)
+    WIDTH = 0.5*WIDTH_CONSTANT/(arraySize)
     setArray(generate(MIN_VALUE_GENERATED,MAX_VALUE_GENERATED,arraySize))
     setSearchState(false)
     setIsSorted(false)
@@ -144,9 +134,9 @@ function App() {
 
   return (
     <div className="main">
-      {displayHeight}\n
+      {/* {displayHeight}\n
       {displayWidth}\n
-      {WIDTH_CONSTANT}
+      {WIDTH_CONSTANT} */}
       <div className="buttons">
         <span>{displayState && !searchState && `Sorting ${array.length} elements`} {!displayState && !searchState && `${arraySize} elements`}  </span>
         {!displayState && <input type = "range" min ="10" max ="200" value = {arraySize} onChange = {(event)=>{

@@ -42,26 +42,16 @@ function quickSort(props, low, high) {
   let index = 0
   quickSortMain(props, low, high)
   function quickSortMain(props, low, high) {
-    //console.log(props)
-    
     if (low < high) {
         let paritionPromise = partition(props, low, high) 
-        //console.log(paritionPromise)
         paritionPromise.then((partitionIndex)=> {
-            //console.log('in then', props.array)
-            // console.log(props.array)
-            // console.log(partitionIndex)
-           
             quickSortMain(props, low, partitionIndex-1)
             quickSortMain(props, partitionIndex+1, high)
         })
-        //console.log(partitionIndex)
     } else {
-      console.log('else statement')
       index = DynamicIsSorted(index, props.array)
       
       if (index === props.array.length - 1) {
-        console.log('sorted')
         props.setArray(props.array)
         props.setDisplayArray(props.array.map((value, index) => {
             return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.width}px`}} key={index} id={index}><div className="bar-text" style={{ fontSize:`${props.font}rem`}}>{value}</div></div>
