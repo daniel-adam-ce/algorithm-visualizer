@@ -6,13 +6,7 @@ import Button from './components/Button'
 import binarySearch from './components/BinarySearch'
 import insertionSort from './components/InsertionSort'
 import quickSortMain from './components/Quicksort'
-let DELAY = 40;
-const MIN_VALUE_GENERATED = 10;
-const MAX_VALUE_GENERATED = 250;
-let WIDTH_CONSTANT = window.innerWidth;
-const WIDTH_MULTIPLIER = 0.7
-const HEIGHT_MULTIPLIER = 1.0;
-let WIDTH = WIDTH_MULTIPLIER*WIDTH_CONSTANT/(50)
+
 const MAX_LENGTH = () => {
   let max = Math.floor(0.14901*window.outerWidth-20 - (0.14901*window.outerWidth-20) % 5)
   if (max > 200 || max < 10) {
@@ -25,7 +19,15 @@ const MAX_LENGTH = () => {
   return max
 }
 
-console.log(MAX_LENGTH)
+const initialSize = Math.floor(MAX_LENGTH()/2)
+let DELAY = 10*(200/(Math.floor(initialSize)))
+const MIN_VALUE_GENERATED = 10;
+const MAX_VALUE_GENERATED = 250;
+let WIDTH_CONSTANT = window.innerWidth;
+const WIDTH_MULTIPLIER = 0.7
+const HEIGHT_MULTIPLIER = 1.0;
+let WIDTH = WIDTH_MULTIPLIER*WIDTH_CONSTANT/(initialSize)
+
 const generate = (min, max, num) => { 
   let array = [];
 
@@ -82,7 +84,7 @@ function calcFontSize() {
 }
 
 function App() {
-  const [arraySize, setArraySize] = useState(50)
+  const [arraySize, setArraySize] = useState(initialSize)
   const [array, setArray, arrayRef] = useState(generate(MIN_VALUE_GENERATED,MAX_VALUE_GENERATED,arraySize))
   
   let font = calcFontSize()
