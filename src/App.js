@@ -13,7 +13,19 @@ let WIDTH_CONSTANT = window.innerWidth;
 const WIDTH_MULTIPLIER = 0.7
 const HEIGHT_MULTIPLIER = 1.0;
 let WIDTH = WIDTH_MULTIPLIER*WIDTH_CONSTANT/(50)
+const MAX_LENGTH = () => {
+  let max = Math.floor(0.14901*window.outerWidth-20 - (0.14901*window.outerWidth-20) % 5)
+  if (max > 200 || max < 10) {
+    if (max > 200) {
+      return 200
+    } else {
+      return 10
+    }
+  }
+  return max
+}
 
+console.log(MAX_LENGTH)
 const generate = (min, max, num) => { 
   let array = [];
 
@@ -151,18 +163,17 @@ function App() {
 
   return (
     <div className="main">
-      {/* {displayHeight}\n
-      {displayWidth}\n
-      {WIDTH_CONSTANT} */}
+      {displayWidth}x
+      {displayHeight}
       <div className="buttons">
         <span>{displayState && !searchState && `Sorting ${array.length} elements`} {!displayState && !searchState && `${arraySize} elements`}  </span>
-        {!displayState && <input type = "range" min ="10" max ="200" value = {arraySize} onChange = {(event)=>{
+        {!displayState && <input type = "range" min ="10" max ={MAX_LENGTH()} value = {arraySize} onChange = {(event)=>{
           setArraySize(event.target.value)
         }}></input>}
-        {!(displayState) &&<Button onClickFunction = {() => {clickGenerate()}} bgColor="white" color="black" radius="5px" text="generate array"></Button>}
-        {!(displayState) && <Button onClickFunction = {insertionSortArray} bgColor="white" color="black" radius="5px" text="insertion sort"></Button>}
-        {!(displayState) && <Button onClickFunction = {quickSortArray} bgColor="white" color="black" radius="5px" text="quicksort"></Button>}
-        {!(displayState) && <Button onClickFunction = {binarySearchArray} bgColor="white" color="black" radius="5px" text="binary search" disabled={!isSorted}></Button>}
+        {!(displayState) && <Button onClickFunction = {clickGenerate} bgColor="white" color="black" radius="5px" text="generate array" cursor="pointer"></Button>}
+        {!(displayState) && <Button onClickFunction = {insertionSortArray} bgColor="white" color="black" radius="5px" text="insertion sort" disabled={isSorted} cursor="pointer"></Button>}
+        {!(displayState) && <Button onClickFunction = {quickSortArray} bgColor="white" color="black" radius="5px" text="quicksort" disabled={isSorted} cursor="pointer"></Button>}
+        {!(displayState) && <Button onClickFunction = {binarySearchArray} bgColor="white" color="black" radius="5px" text="binary search" disabled={!isSorted} cursor="pointer"></Button>}
       </div>
       {(searchState) && <div className='search-status'>searching for: {searchValue}</div>}
       <div className='array-display'>

@@ -6,6 +6,7 @@ const Button = (props) => {
         color: props.color,
         borderRadius: props.radius,
         padding: '0.5rem',
+        cursor: props.cursor,
     }
     return (
         <button style={divStyle} onClick={props.onClickFunction} disabled={props.disabled}>{props.text}</button>
