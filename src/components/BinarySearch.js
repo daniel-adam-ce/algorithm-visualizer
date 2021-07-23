@@ -28,12 +28,12 @@ async function binarySeach (props) {
             return <div className='bar' style = {{height: `${value*props.heightMultiplier}px`, width: `${props.height}px`}} key={index} id={index}><div className="bar-text" style={{fontSize:`${props.font}px`}}>{value}</div></div>
           }
         }))
-          console.log(`found ${props.searchValue}`)
+          //console.log(`found ${props.searchValue}`)
           break
       }
       
   }
-  console.log('done')
+  //console.log('done')
   props.setDisplayState(!props.displayStateRef.current)
   props.setSearchState(false)
 }

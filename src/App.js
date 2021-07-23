@@ -131,7 +131,7 @@ function App() {
   }
 
   function quickSortArray(){
-    console.log(font)
+    //console.log(font)
     setSearchState(false)
     setDisplayState(!displayStateRef.current)
     quickSortMain(sortProps, 0, array.length - 1)
