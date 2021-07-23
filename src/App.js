@@ -163,8 +163,8 @@ function App() {
 
   return (
     <div className="main">
-      {displayWidth}x
-      {displayHeight}
+      {/* {displayWidth}x
+      {displayHeight} */}
       <div className="buttons">
         <span>{displayState && !searchState && `Sorting ${array.length} elements`} {!displayState && !searchState && `${arraySize} elements`}  </span>
         {!displayState && <input type = "range" min ="10" max ={MAX_LENGTH()} value = {arraySize} onChange = {(event)=>{
